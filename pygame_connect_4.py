@@ -140,9 +140,7 @@ def main():
     star_basket_image = pygame.image.load('images/star_basket.png').convert_alpha()
     player2_image = pygame.image.load('images/player2.png').convert_alpha()
 
-    round_counter = 0
-    row_counter = 0
-    win_checker_handler = False
+
     # game_record is the status of how each cell
     game_record = [[" ", " ", " ", " ", " ", " "],
     [" ", " ", " ", " ", " ", " "],
@@ -165,16 +163,18 @@ def main():
     [(425, 375), (425, 325), (425, 275), (425, 225), (425, 175), (425, 125)]]
     # if player makes a move, the column input's will change the value of its index of the row_counter
     row_counter = [0, 0, 0, 0, 0, 0, 0]
+    round_counter = 0
     quit_game = False
-    game_music.play(-1)
     play_again = False
-    player_input = 0
+    player_input = -1
     click = False
     win_check = False
     winner = ""
     delay = False
     win_marker = 0
     winning_location = (0, 0)
+
+    game_music.play(-1)
 
     screen.blit(button_image, (15, 415))
     screen.blit(circle_basket_image, (15, 245))
@@ -340,19 +340,19 @@ def main():
                 break
             if winner == "player 1":
                 if delay == False:
-                    pygame.time.delay(2000)
+                    pygame.time.delay(3000)
                     delay = True
                 screen.blit(background_player1_won_image, (0,0))
                 pygame.display.update()
             elif winner == "player 2":
                 if delay == False:
-                    pygame.time.delay(2000)
+                    pygame.time.delay(3000)
                     delay = True
                 screen.blit(background_player2_won_image, (0,0))
                 pygame.display.update()
             elif winner == "":
                 if delay == False:
-                    pygame.time.delay(2000)
+                    pygame.time.delay(3000)
                     delay = True
                 screen.blit(background_tie_image, (0,0))
                 pygame.display.update()
