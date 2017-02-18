@@ -38,10 +38,11 @@ class Player1(object):
     def move(self, screen, game_record, row_counter, location_record, background_image):
         #the first index is the column, the second index is the current row.
         screen.blit(background_image, (0,0))
-        if self.input in range(1, 8):
-            circle = Circle(self.image,screen)
-            game_record[self.input][row_counter[self.input]] = circle
-            row_counter[self.input] +=1
+        circle = Circle(self.image,screen)
+        game_record[self.input][row_counter[self.input]] = circle
+        row_counter[self.input] +=1
+        sound = pygame.mixer.Sound('sounds/brush.wav')
+        sound.play()
         for i in range(7):
             for j in range(6):
                 screen.blit(game_record[i][j].image, location_record[i][j])
@@ -57,10 +58,11 @@ class Player2(object):
     def move(self, screen, game_record, row_counter, location_record, background_image):
         #the first index is the column, the second index is the current row.
         screen.blit(background_image, (0,0))
-        if self.input in range(1, 8):
-            star = Star(self.image,screen)
-            game_record[self.input][row_counter[self.input]] = star
-            row_counter[self.input] +=1
+        star = Star(self.image,screen)
+        game_record[self.input][row_counter[self.input]] = star
+        row_counter[self.input] +=1
+        sound = pygame.mixer.Sound('sounds/brush.wav')
+        sound.play()
         for i in range(7):
             for j in range(6):
                 screen.blit(game_record[i][j].image, location_record[i][j])
@@ -150,7 +152,6 @@ def main():
     play_again_handler = True
     # control the game running status, in order to break out nested loops
     runner = True
-    stop_game = False
     quit_game = False
     end_condition = ''
     game_music.play(-1)
@@ -173,7 +174,6 @@ def main():
     pygame.display.update()
 
     while not quit_game:
-
 
         while click == False and win_check == False and play_again == False:
             for event in pygame.event.get():
@@ -212,7 +212,7 @@ def main():
                 if play_again == True:
                     break
 
-            if play_again == True:
+            if play_again == True or quit_game == True:
                 break
 
 
