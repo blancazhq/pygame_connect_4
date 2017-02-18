@@ -111,7 +111,7 @@ def main():
     pygame.display.update()
     print "background_image"
     clock = pygame.time.Clock()
-    tick = clock.tick(10)
+    tick = clock.tick(60)
     game_music = pygame.mixer.Sound('sounds/music.wav')
     nothing_image = pygame.image.load('images/nothing.png').convert_alpha()
     circle_image1 = pygame.image.load('images/circle1.png').convert_alpha()
@@ -153,7 +153,6 @@ def main():
     # control the game running status, in order to break out nested loops
     runner = True
     quit_game = False
-    end_condition = ''
     game_music.play(-1)
 
     play_again = False
@@ -183,8 +182,6 @@ def main():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if event.pos[0] in range(125, 175) and event.pos[1] in range(125, 425):
                         player_input = 0
-                        print 1
-                        print 10
                         click = True
                     if event.pos[0] in range(175, 225) and event.pos[1] in range(125, 425):
                         player_input = 1
@@ -222,14 +219,11 @@ def main():
             player1 = Player1(circle_image, player_input)
             player1.move(screen, game_record, row_counter, location_record, background_image)
             round_counter += 1
-            print round_counter
             if win_checker(game_record, win_check) == True:
                 win_check = True
-                print "found a winner "
                 winner = "player 1"
             if round_counter >= 42:
                 win_check = True
-                print "tied"
             click = False
             if win_check == False and play_again == False:
                 button_image = pygame.image.load('images/button.png').convert_alpha()
@@ -251,8 +245,6 @@ def main():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if event.pos[0] in range(125, 175) and event.pos[1] in range(125, 425):
                         player_input = 0
-                        print 1
-                        print 10
                         click = True
                     if event.pos[0] in range(175, 225) and event.pos[1] in range(125, 425):
                         player_input = 1
@@ -288,14 +280,11 @@ def main():
             player2 = Player2(star_image, player_input)
             player2.move(screen, game_record, row_counter, location_record, background_image)
             round_counter += 1
-            print round_counter
             if win_checker(game_record, win_check) == True:
                 win_check = True
-                print "found a winner "
                 winner = "player 2"
             if round_counter >= 42:
                 win_check = True
-                print "tied"
             click = False
             if win_check == False and play_again == False:
                 button_image = pygame.image.load('images/button.png').convert_alpha()
@@ -322,9 +311,7 @@ def main():
                         break
             if play_again == True or quit_game == True:
                 break
-            print "winner page"
             if winner == "player 1":
-                print "winner is 1"
                 while delay == False:
                     screen.blit(background_image, (0,0))
                     for i in range(7):
@@ -335,7 +322,6 @@ def main():
                 screen.blit(background_player1_won_image, (0,0))
                 pygame.display.update()
             elif winner == "player 2":
-                print "winner is 2"
                 while delay == False:
                     screen.blit(background_image, (0,0))
                     for i in range(7):
@@ -346,7 +332,6 @@ def main():
                 screen.blit(background_player2_won_image, (0,0))
                 pygame.display.update()
             elif winner == "":
-                print "tie"
                 while delay == False:
                     screen.blit(background_image, (0,0))
                     for i in range(7):
