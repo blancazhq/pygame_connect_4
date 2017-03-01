@@ -18,11 +18,6 @@ class Win_checker(object):
                     self.winning_location = location_record[i][j]
                     return True
                     break
-                elif game_record[i][j].name == game_record[i][j+1].name == game_record[i][j+2].name == game_record[i][j+3].name and game_record[i][j].name != "nothing":
-                    self.win_marker = 2
-                    self.winning_location = location_record[i][j+3]
-                    return True
-                    break
                 elif game_record[i][j].name == game_record[i+1][j+1].name == game_record[i+2][j+2].name == game_record[i+3][j+3].name and game_record[i][j].name != "nothing":
                     self.win_marker = 4
                     self.winning_location = location_record[i][j+3]
@@ -30,6 +25,16 @@ class Win_checker(object):
                     break
                 elif game_record[i][j+3].name == game_record[i+1][j+2].name == game_record[i+2][j+1].name == game_record[i+3][j].name and game_record[i][j+3].name != "nothing":
                     self.win_marker = 3
+                    self.winning_location = location_record[i][j+3]
+                    return True
+                    break
+                else:
+                    continue
+
+        for i in range(7):
+            for j in range(3):
+                if game_record[i][j].name == game_record[i][j+1].name == game_record[i][j+2].name == game_record[i][j+3].name and game_record[i][j].name != "nothing":
+                    self.win_marker = 2
                     self.winning_location = location_record[i][j+3]
                     return True
                     break
